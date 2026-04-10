@@ -1,0 +1,407 @@
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-background-primary); }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); position: sticky; top: 0; z-index: 10; }
+.nav-logo { font-size: 20px; font-weight: 500; color: #185FA5; cursor: pointer; }
+.nav-links { display: flex; gap: 0.4rem; list-style: none; flex-wrap: wrap; }
+.nav-links button { background: none; border: 0.5px solid transparent; padding: 6px 13px; border-radius: 20px; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; transition: all 0.2s; }
+.nav-links button:hover { color: #185FA5; border-color: #B5D4F4; background: #E6F1FB; }
+.nav-links button.active { color: #185FA5; background: #E6F1FB; border-color: #B5D4F4; font-weight: 500; }
+.page { display: none; animation: fadeIn 0.25s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.inner { padding: 2rem; max-width: 900px; margin: 0 auto; }
+.section-title { font-size: 22px; font-weight: 500; color: #0C447C; margin-bottom: 0.25rem; }
+.section-sub { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+
+/* HERO */
+.hero { background: linear-gradient(135deg, #0C447C 0%, #185FA5 55%, #378ADD 100%); padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.hero-text { color: #fff; }
+.hero-badge { display: inline-block; background: rgba(255,255,255,0.18); color: #fff; font-size: 12px; padding: 4px 14px; border-radius: 20px; margin-bottom: 1rem; }
+.hero h1 { font-size: 36px; font-weight: 500; margin-bottom: 0.5rem; }
+.hero p { font-size: 15px; opacity: 0.85; margin-bottom: 1.5rem; line-height: 1.6; }
+.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.hero-btn { background: #fff; color: #185FA5; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+.hero-btn:hover { background: #E6F1FB; }
+.hero-btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.5); padding: 10px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+.hero-btn-outline:hover { background: rgba(255,255,255,0.1); }
+.hero-visual { display: flex; justify-content: center; }
+
+/* COLORFUL SECTION BACKGROUNDS */
+.bg-life { background: linear-gradient(135deg, #E6F1FB 0%, #B5D4F4 100%); }
+.bg-health { background: linear-gradient(135deg, #E1F5EE 0%, #9FE1CB 100%); }
+.bg-consult { background: linear-gradient(135deg, #FAEEDA 0%, #FAC775 100%); }
+.bg-sales { background: linear-gradient(135deg, #FBEAF0 0%, #F4C0D1 100%); }
+.bg-motor { background: linear-gradient(135deg, #EEEDFE 0%, #CECBF6 100%); }
+.bg-protection { background: linear-gradient(135deg, #0C447C 0%, #185FA5 40%, #5DCAA5 100%); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.bg-about-header { background: linear-gradient(135deg, #E6F1FB 0%, #EAF3DE 100%); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border: 0.5px solid #B5D4F4; }
+.bg-education-wrap { background: linear-gradient(135deg, #FAEEDA 0%, #E1F5EE 100%); border-radius: 12px; padding: 1.5rem; }
+.bg-contact-wrap { background: linear-gradient(135deg, #EEEDFE 0%, #E6F1FB 100%); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+
+/* ABOUT */
+.about-top { display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.25rem; }
+.avatar { width: 72px; height: 72px; border-radius: 50%; background: #185FA5; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 500; color: #fff; flex-shrink: 0; }
+.about-name { font-size: 20px; font-weight: 500; }
+.about-role { font-size: 14px; color: #185FA5; margin-top: 2px; }
+.about-loc { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+.about-bio { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); border-top: 0.5px solid rgba(24,95,165,0.2); padding-top: 1rem; margin-top: 0.5rem; }
+.info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1rem; }
+.info-card { border-radius: 10px; padding: 1rem; text-align: center; }
+.ic-blue { background: linear-gradient(135deg,#185FA5,#378ADD); }
+.ic-green { background: linear-gradient(135deg,#0F6E56,#1D9E75); }
+.ic-purple { background: linear-gradient(135deg,#534AB7,#7F77DD); }
+.info-num { font-size: 24px; font-weight: 500; color: #fff; }
+.info-label { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+.detail-row { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 0.5px solid rgba(24,95,165,0.15); align-items: center; }
+.detail-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(24,95,165,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.detail-label { font-size: 12px; color: var(--color-text-secondary); }
+.detail-val { font-size: 14px; font-weight: 500; }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.service-card { border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; border: 0.5px solid rgba(255,255,255,0.4); }
+.service-card:hover { transform: translateY(-2px); }
+.svc-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; }
+.svc-title { font-size: 15px; font-weight: 500; margin-bottom: 0.25rem; color: #0C447C; }
+.svc-short { font-size: 13px; color: #185FA5; }
+.svc-detail { display: none; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid rgba(24,95,165,0.2); font-size: 13px; color: #0C447C; line-height: 1.6; }
+.service-card.open .svc-detail { display: block; }
+.svc-toggle { font-size: 12px; color: #185FA5; margin-top: 0.5rem; display: inline-block; font-weight: 500; }
+.new-badge { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+
+/* PARTNER COMPANIES */
+.companies-title { font-size: 16px; font-weight: 500; color: #0C447C; margin-bottom: 0.5rem; }
+.companies-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1rem; }
+.companies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.company-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: border-color 0.2s; }
+.company-card:hover { border-color: #378ADD; }
+.company-logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+.logo-uiic { background: linear-gradient(135deg,#0C447C,#185FA5); color:#fff; }
+.logo-tnia { background: linear-gradient(135deg,#085041,#1D9E75); color:#fff; }
+.logo-nicl { background: linear-gradient(135deg,#633806,#BA7517); color:#fff; }
+.logo-oriental { background: linear-gradient(135deg,#712B13,#D85A30); color:#fff; }
+.company-name { font-size: 14px; font-weight: 500; }
+.company-full { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.4; }
+.company-detail { display: none; margin-top: 1rem; padding: 1rem; background: var(--color-background-secondary); border-radius: 8px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+.partner-wrap { margin-bottom: 0.5rem; }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.c-row { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.7); border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.75rem; }
+.c-icon { width: 34px; height: 34px; border-radius: 8px; background: #185FA5; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.c-label { font-size: 11px; color: var(--color-text-secondary); }
+.c-val { font-size: 14px; font-weight: 500; }
+.contact-form { background: rgba(255,255,255,0.7); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.contact-form input, .contact-form textarea { padding: 10px 12px; border: 0.5px solid #B5D4F4; border-radius: 8px; font-size: 14px; background: #fff; color: var(--color-text-primary); width: 100%; text-transform: capitalize; }
+.contact-form textarea { height: 85px; resize: none; text-transform: none; }
+.submit-btn { background: linear-gradient(135deg,#0C447C,#185FA5); color: #fff; border: none; padding: 11px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+.submit-btn:hover { background: linear-gradient(135deg,#185FA5,#378ADD); }
+.wa-btn { background: linear-gradient(135deg,#075E54,#128C7E); color: #fff; border: none; padding: 11px; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.wa-btn:hover { background: linear-gradient(135deg,#128C7E,#25D366); }
+.success-msg { display: none; background: #EAF3DE; color: #3B6D11; border-radius: 8px; padding: 0.75rem 1rem; font-size: 14px; text-align: center; }
+
+/* MAP */
+.map-section { margin-top: 1.5rem; background: linear-gradient(135deg,#E6F1FB,#EAF3DE); border-radius: 12px; padding: 1.5rem; }
+.map-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.map-label { font-size: 16px; font-weight: 500; color: #0C447C; }
+.map-sublabel { font-size: 13px; color: var(--color-text-secondary); }
+.map-frame { border-radius: 10px; overflow: hidden; border: 0.5px solid #B5D4F4; height: 280px; }
+.map-frame iframe { width: 100%; height: 100%; border: none; }
+.map-open-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 0.75rem; background: #185FA5; color: #fff; border: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; text-decoration: none; }
+
+/* EDU */
+.edu-list { list-style: none; }
+.edu-item { display: flex; gap: 1rem; padding: 1rem; margin-bottom: 0.75rem; border-radius: 10px; }
+.edu-item:nth-child(1) { background: linear-gradient(135deg,#E6F1FB,#B5D4F4); }
+.edu-item:nth-child(2) { background: linear-gradient(135deg,#E1F5EE,#9FE1CB); }
+.edu-item:nth-child(3) { background: linear-gradient(135deg,#FAEEDA,#FAC775); }
+.edu-dot { width: 12px; height: 12px; border-radius: 50%; background: #185FA5; margin-top: 5px; flex-shrink: 0; }
+.edu-title { font-size: 15px; font-weight: 500; color: #0C447C; }
+.edu-sub { font-size: 13px; color: #185FA5; }
+
+footer { text-align: center; padding: 1.25rem; background: linear-gradient(135deg,#0C447C,#185FA5); font-size: 13px; color: rgba(255,255,255,0.85); margin-top: 1rem; }
+
+@media (max-width:620px) {
+  .hero { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .bg-protection { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .info-grid { grid-template-columns:repeat(2,1fr); }
+  .hero h1 { font-size:26px; }
+  .about-top { flex-direction:column; text-align:center; }
+}
+</style>
+
+<nav>
+  <span class="nav-logo" onclick="showPage('home')">Nagaraj</span>
+  <ul class="nav-links">
+    <li><button onclick="showPage('about')" id="btn-about">About</button></li>
+    <li><button onclick="showPage('services')" id="btn-services">Services</button></li>
+    <li><button onclick="showPage('education')" id="btn-education">Education</button></li>
+    <li><button onclick="showPage('contact')" id="btn-contact">Contact</button></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-text">
+      <span class="hero-badge">Certified Insurance Advisor</span>
+      <h1>Nagaraj</h1>
+      <p>Your trusted partner for insurance solutions — protecting what matters most to you and your family.</p>
+      <div class="hero-btns">
+        <button class="hero-btn" onclick="showPage('contact')">Get in Touch</button>
+        <button class="hero-btn-outline" onclick="showPage('services')">View Services</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg width="230" height="210" viewBox="0 0 230 210" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="115" cy="195" rx="100" ry="14" fill="rgba(255,255,255,0.08)"/>
+        <path d="M115 8 L195 43 L195 115 Q195 165 115 192 Q35 165 35 115 L35 43 Z" fill="rgba(255,255,255,0.13)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+        <path d="M115 22 L183 52 L183 113 Q183 155 115 178 Q47 155 47 113 L47 52 Z" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        <polyline points="85,106 105,126 147,84" fill="none" stroke="rgba(255,255,255,0.95)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="90" cy="143" r="10" fill="rgba(255,255,255,0.88)"/>
+        <path d="M75,188 Q75,163 90,161 Q105,163 105,188" fill="rgba(255,255,255,0.68)"/>
+        <circle cx="140" cy="143" r="10" fill="rgba(255,255,255,0.88)"/>
+        <path d="M125,188 Q125,163 140,161 Q155,163 155,188" fill="rgba(255,255,255,0.68)"/>
+        <circle cx="115" cy="152" r="7" fill="rgba(255,255,255,0.92)"/>
+        <path d="M106,188 Q106,170 115,168 Q124,170 124,188" fill="rgba(255,255,255,0.75)"/>
+        <circle cx="50" cy="32" r="2" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="180" cy="25" r="3" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="25" cy="88" r="2" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="205" cy="82" r="2" fill="rgba(255,255,255,0.35)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div style="padding:2rem; max-width:900px; margin:0 auto;">
+    <div class="bg-protection">
+      <div>
+        <p style="font-size:20px;font-weight:500;color:#fff;margin-bottom:0.5rem;">Protecting our society, one family at a time</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:1rem;">Insurance is not just a policy — it is a promise of security. I am committed to building a safer society by ensuring every family in Palani and beyond has the right coverage they deserve.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;">Family protection</span>
+          <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;">Financial security</span>
+          <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;">Community trust</span>
+          <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:12px;padding:4px 12px;border-radius:20px;">Peace of mind</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <svg width="190" height="170" viewBox="0 0 190 170" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="95" width="38" height="48" rx="3" fill="#B5D4F4" stroke="#fff" stroke-width="1"/>
+          <polygon points="8,95 27,72 46,95" fill="#fff" opacity="0.8"/>
+          <rect x="20" y="114" width="14" height="29" rx="2" fill="#185FA5"/>
+          <rect x="15" y="100" width="9" height="9" rx="1" fill="#fff"/>
+          <rect x="27" y="100" width="9" height="9" rx="1" fill="#fff"/>
+          <rect x="62" y="85" width="46" height="58" rx="3" fill="#9FE1CB" stroke="#fff" stroke-width="1"/>
+          <polygon points="62,85 85,58 108,85" fill="#fff" opacity="0.8"/>
+          <rect x="74" y="108" width="20" height="35" rx="2" fill="#0F6E56"/>
+          <rect x="68" y="91" width="12" height="12" rx="1" fill="#fff"/>
+          <rect x="88" y="91" width="12" height="12" rx="1" fill="#fff"/>
+          <rect x="128" y="100" width="38" height="43" rx="3" fill="#FAC775" stroke="#fff" stroke-width="1"/>
+          <polygon points="128,100 147,79 166,100" fill="#fff" opacity="0.8"/>
+          <rect x="139" y="118" width="14" height="25" rx="2" fill="#BA7517"/>
+          <rect x="133" y="105" width="9" height="9" rx="1" fill="#fff"/>
+          <rect x="148" y="105" width="9" height="9" rx="1" fill="#fff"/>
+          <rect x="5" y="141" width="180" height="5" rx="3" fill="#5DCAA5" opacity="0.7"/>
+          <path d="M95 4 L143 22 L143 74 Q143 106 95 122 Q47 106 47 74 L47 22 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+          <polyline points="78,64 92,78 114,54" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="162" cy="20" r="11" fill="#FAC775" opacity="0.9"/>
+          <line x1="162" y1="5" x2="162" y2="2" stroke="#fff" stroke-width="1.5"/>
+          <line x1="174" y1="8" x2="177" y2="5" stroke="#fff" stroke-width="1.5"/>
+          <line x1="177" y1="20" x2="181" y2="20" stroke="#fff" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="inner">
+    <p class="section-title">About me</p>
+    <p class="section-sub">Everything about Nagaraj — Insurance Advisor</p>
+    <div class="bg-about-header">
+      <div class="about-top">
+        <div class="avatar">N</div>
+        <div>
+          <div class="about-name">Nagaraj</div>
+          <div class="about-role">Insurance Advisor</div>
+          <div class="about-loc">Palani, Tamil Nadu — 624601</div>
+        </div>
+      </div>
+      <div class="about-bio">Hi, I'm Nagaraj — a dedicated Insurance Advisor with 5 years of hands-on experience. I hold a B.Tech in Information Technology and am IRDAI licensed. I am passionate about helping individuals and families secure their financial future with the right coverage.</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card ic-blue"><div class="info-num">500+</div><div class="info-label">Clients served</div></div>
+      <div class="info-card ic-green"><div class="info-num">5+</div><div class="info-label">Years experience</div></div>
+      <div class="info-card ic-purple"><div class="info-num">98%</div><div class="info-label">Client satisfaction</div></div>
+    </div>
+    <div class="bg-about-header">
+      <div class="detail-row"><div class="detail-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.52 2 2 0 0 1 3.6 2.33h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.06-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="detail-label">Phone</div><div class="detail-val">+91 82203 39225</div></div></div>
+      <div class="detail-row"><div class="detail-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="detail-label">Email</div><div class="detail-val">nagarajbtech03@gmail.com</div></div></div>
+      <div class="detail-row" style="border:none;"><div class="detail-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="detail-label">Location</div><div class="detail-val">Palani, Tamil Nadu — 624601</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="page-services" class="page">
+  <div class="inner">
+    <p class="section-title">My services</p>
+    <p class="section-sub">Click on any card to see full details</p>
+    <div class="services-grid">
+      <div class="service-card bg-life" onclick="toggleService(this)">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="svc-title">Life insurance</div>
+        <div class="svc-short">Coverage for your family's future</div>
+        <div class="svc-detail">I help you choose the best life insurance — term plans, endowment plans, ULIPs — based on your income, dependents, and long-term goals.</div>
+        <span class="svc-toggle">Tap to expand +</span>
+      </div>
+      <div class="service-card bg-health" onclick="toggleService(this)">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="svc-title" style="color:#085041;">Health insurance</div>
+        <div class="svc-short" style="color:#0F6E56;">Medical coverage for you & family</div>
+        <div class="svc-detail" style="color:#085041;">I guide you through individual and family floater health plans, critical illness covers, and top-up policies — right protection without overpaying.</div>
+        <span class="svc-toggle" style="color:#0F6E56;">Tap to expand +</span>
+      </div>
+      <div class="service-card bg-consult" onclick="toggleService(this)">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="svc-title" style="color:#633806;">Insurance consulting</div>
+        <div class="svc-short" style="color:#BA7517;">Expert advice, right plan for you</div>
+        <div class="svc-detail" style="color:#633806;">Free consultation to understand your needs and compare plans from top insurers so you can make a confident, informed decision.</div>
+        <span class="svc-toggle" style="color:#BA7517;">Tap to expand +</span>
+      </div>
+      <div class="service-card bg-sales" onclick="toggleService(this)">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#993556" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="svc-title" style="color:#4B1528;">Sales & marketing</div>
+        <div class="svc-short" style="color:#993556;">Connecting people to right plans</div>
+        <div class="svc-detail" style="color:#4B1528;">5 years of field experience reaching out to clients, explaining products clearly, and helping them enroll in plans that genuinely benefit them.</div>
+        <span class="svc-toggle" style="color:#993556;">Tap to expand +</span>
+      </div>
+      <div class="service-card bg-motor" onclick="toggleService(this)">
+        <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="svc-title" style="color:#26215C;">Motor insurance <span class="new-badge">New</span></div>
+        <div class="svc-short" style="color:#534AB7;">Protect your car & two-wheeler</div>
+        <div class="svc-detail" style="color:#26215C;">Third-party liability, own damage, and comprehensive plans. Quick renewals, cashless claims, and zero-depreciation add-ons via UIIC, TNIA, NICL & Oriental.</div>
+        <span class="svc-toggle" style="color:#534AB7;">Tap to expand +</span>
+      </div>
+    </div>
+    <div style="border-top:0.5px solid var(--color-border-tertiary);padding-top:1.5rem;">
+      <p class="companies-title">Our partner insurance companies</p>
+      <p class="companies-sub">Click on a company to learn more</p>
+      <div class="companies-grid">
+        <div class="partner-wrap"><div class="company-card" onclick="toggleCompany(this)"><div class="company-logo logo-uiic">UIIC</div><div><div class="company-name">UIIC</div><div class="company-full">United India Insurance Co.</div></div></div><div class="company-detail">United India Insurance Company Ltd — public sector general insurer offering health, motor, fire, marine, and rural insurance. Established 1938, Chennai.</div></div>
+        <div class="partner-wrap"><div class="company-card" onclick="toggleCompany(this)"><div class="company-logo logo-tnia">TNIA</div><div><div class="company-name">TNIA</div><div class="company-full">The New India Assurance Co.</div></div></div><div class="company-detail">India's largest general insurance company offering health, motor, travel, home, and commercial solutions.</div></div>
+        <div class="partner-wrap"><div class="company-card" onclick="toggleCompany(this)"><div class="company-logo logo-nicl">NICL</div><div><div class="company-name">NICL</div><div class="company-full">National Insurance Co. Ltd.</div></div></div><div class="company-detail">Established 1906 — health, motor, property, liability and engineering insurance across India.</div></div>
+        <div class="partner-wrap"><div class="company-card" onclick="toggleCompany(this)"><div class="company-logo logo-oriental">OIC</div><div><div class="company-name">Oriental</div><div class="company-full">Oriental Insurance Co. Ltd.</div></div></div><div class="company-detail">Established 1947 — health, motor, travel, crop and fire insurance for millions across India.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div id="page-education" class="page">
+  <div class="inner">
+    <p class="section-title">Education</p>
+    <p class="section-sub">My academic and professional background</p>
+    <div class="bg-education-wrap">
+      <ul class="edu-list">
+        <li class="edu-item"><div class="edu-dot"></div><div><div class="edu-title">B.Tech — Information Technology (IT)</div><div class="edu-sub">Anna University, Tamil Nadu</div></div></li>
+        <li class="edu-item"><div class="edu-dot"></div><div><div class="edu-title">IRDAI Licensed Insurance Advisor</div><div class="edu-sub">Insurance Regulatory and Development Authority of India</div></div></li>
+        <li class="edu-item"><div class="edu-dot"></div><div><div class="edu-title">5 years of professional experience</div><div class="edu-sub">Insurance field — Sales, Marketing & Advisory</div></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="inner">
+    <p class="section-title">Contact me</p>
+    <p class="section-sub">Let's find the right coverage for you</p>
+    <div class="bg-contact-wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="c-row"><div class="c-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.52 2 2 0 0 1 3.6 2.33h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.06-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="c-label">Phone</div><div class="c-val">+91 82203 39225</div></div></div>
+          <div class="c-row"><div class="c-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-label">Email</div><div class="c-val">nagarajbtech03@gmail.com</div></div></div>
+          <div class="c-row"><div class="c-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-label">Location</div><div class="c-val">Palani, Tamil Nadu — 624601</div></div></div>
+          <div style="background:rgba(255,255,255,0.7);border-radius:10px;padding:1rem;font-size:13px;color:#0C447C;line-height:1.6;margin-top:0.25rem;">
+            <strong>Need help?</strong> Fill the form and your message will be sent directly to Nagaraj via WhatsApp for an instant response!
+          </div>
+        </div>
+        <div class="contact-form">
+          <input type="text" id="c-name" placeholder="Your Name" oninput="capitalizeInput(this)" />
+          <input type="tel" id="c-phone" placeholder="Your Phone Number" />
+          <input type="text" id="c-service" placeholder="Service Required (e.g. Life Insurance)" oninput="capitalizeInput(this)" />
+          <textarea id="c-msg" placeholder="Your message to Nagaraj..."></textarea>
+          <a id="wa-link" class="wa-btn" href="#" onclick="sendWhatsApp(event)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Send via WhatsApp
+          </a>
+          <div class="success-msg" id="success-msg">Opening WhatsApp — your message is ready to send to Nagaraj!</div>
+        </div>
+      </div>
+    </div>
+    <div class="map-section">
+      <div class="map-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div class="map-label">Our location</div><div class="map-sublabel">Palani, Tamil Nadu — 624601</div></div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31529.12345!2d77.5219!3d10.4480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9f41bc5c8f6b3%3A0x2a4d5e6f7a8b9c0d!2sPalani%2C%20Tamil%20Nadu%20624601!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Palani location map"></iframe>
+      </div>
+      <a class="map-open-btn" href="https://maps.google.com/?q=Palani,Tamil+Nadu+624601" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Google Maps
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 Nagaraj — Insurance Advisor &nbsp;|&nbsp; Palani, Tamil Nadu — 624601</p></footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const btn = document.getElementById('btn-' + name);
+  if (btn) btn.classList.add('active');
+}
+function toggleService(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.service-card').forEach(c => { c.classList.remove('open'); c.querySelector('.svc-toggle').textContent = 'Tap to expand +'; });
+  if (!isOpen) { card.classList.add('open'); card.querySelector('.svc-toggle').textContent = 'Tap to collapse −'; }
+}
+function toggleCompany(card) {
+  const detail = card.nextElementSibling;
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.company-card').forEach(c => { c.classList.remove('open'); c.nextElementSibling.style.display = 'none'; });
+  if (!isOpen) { card.classList.add('open'); detail.style.display = 'block'; }
+}
+function capitalizeInput(input) {
+  const pos = input.selectionStart;
+  input.value = input.value.replace(/\b\w/g, c => c.toUpperCase());
+  input.setSelectionRange(pos, pos);
+}
+function sendWhatsApp(e) {
+  e.preventDefault();
+  const name = document.getElementById('c-name').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const service = document.getElementById('c-service').value.trim();
+  const msg = document.getElementById('c-msg').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  const text = `Hello Nagaraj,\n\nName: ${name}\nPhone: ${phone}\nService Required: ${service || 'Not specified'}\nMessage: ${msg || 'I need help with insurance.'}\n\nPlease assist me.`;
+  const waUrl = `https://wa.me/918220339225?text=${encodeURIComponent(text)}`;
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-phone').value = '';
+  document.getElementById('c-service').value = '';
+  document.getElementById('c-msg').value = '';
+  const s = document.getElementById('success-msg');
+  s.style.display = 'block';
+  setTimeout(() => s.style.display = 'none', 4000);
+  window.open(waUrl, '_blank');
+}
+</script>
